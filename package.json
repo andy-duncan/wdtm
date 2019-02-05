@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --open",
-    "test": "mocha --compilers js:babel-core/register"
+    "test": "mocha --require babel-core/register"
   },
   "keywords": [],
   "author": "andy-duncan",
