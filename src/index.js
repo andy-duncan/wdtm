@@ -107,6 +107,7 @@ const say = (x) => {
 
 console.log('thingy stecb');
 say(123457);
+say(56567);
 
 
 
