@@ -1,11 +1,9 @@
 
 // add audio
-// create html
 // split out millions / thousands
 // add billions, trillions, quadrillions, quintillions
 // highlight as it says each section
 // cache the content for offline
-// host somewhere publicly accessible
 // make a smarter input
 
 
@@ -105,34 +103,6 @@ const say = (x) => {
   console.log(x, pieces.map((n) => n.text).join(' '));
 };
 
-say(0);
-say(3);
-say(9);
-say(10);
-say(11);
-say(20);
-say(22);
-say(27);
-say(34);
-say(46);
-say(57);
-say(63);
-say(79);
-say(81);
-say(99);
-say(100);
-say(101);
-say(124);
-say(199);
-say(456);
-say(893);
-say(1000);
-say(1001);
-say(1100);
-say(1999);
-say(2000);
-say(2453);
-say(123456);
-say(112200);
-say(999999);
+document.getElementById('one').play();
 
+console.log('thingy');
