@@ -103,6 +103,10 @@ const say = (x) => {
   console.log(x, pieces.map((n) => n.text).join(' '));
 };
 
-document.getElementById('one').play();
+// document.getElementById('one').play();
 
-console.log('thingy');
+console.log('thingy stecb');
+say(123456);
+
+
+
