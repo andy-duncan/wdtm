@@ -13,7 +13,7 @@ const body = document.body;
 // look at css grid for the buttons
 
 const responsivevoice = document.createElement('SCRIPT');
-responsivevoice.src = 'http://code.responsivevoice.org/responsivevoice.js';
+responsivevoice.src = 'https://code.responsivevoice.org/responsivevoice.js';
 head.appendChild(responsivevoice);
 
 const input = document.createElement('INPUT');
