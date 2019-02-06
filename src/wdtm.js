@@ -1,34 +1,34 @@
-const ZERO = { text: 'zero' };
-const ONE = { text: 'one' };
-const TWO = { text: 'two' };
-const THREE = { text: 'three' };
-const FOUR = { text: 'four' };
-const FIVE = { text: 'five' };
-const SIX = { text: 'six' };
-const SEVEN = { text: 'seven' };
-const EIGHT = { text: 'eight' };
-const NINE = { text: 'nine' };
-const TEN = { text: 'ten' };
-const ELEVEN = { text: 'eleven' };
-const TWELVE = { text: 'twelve' };
-const THIRTEEN = { text: 'thirteen' };
-const FOURTEEN = { text: 'fourteen' };
-const FIFTEEN = { text: 'fifteen' };
-const SIXTEEN = { text: 'sixteen' };
-const SEVENTEEN = { text: 'seventeen' };
-const EIGHTEEN = { text: 'eighteen' };
-const NINETEEN = { text: 'nineteen' };
-const TWENTY = { text: 'twenty' };
-const THIRTY = { text: 'thirty' };
-const FORTY = { text: 'forty' };
-const FIFTY = { text: 'fifty' };
-const SIXTY = { text: 'sixty' };
-const SEVENTY = { text: 'seventy' };
-const EIGHTY = { text: 'eighty' };
-const NINETY = { text: 'ninety' };
-const HUNDRED = { text: 'hundred' };
-const THOUSAND = { text: 'thousand' };
-const AND = { text: 'and' };
+const ZERO = { text: 'zero', audio: new Audio('./audio/zero.m4a') };
+const ONE = { text: 'one', audio: new Audio('./audio/one.m4a') };
+const TWO = { text: 'two', audio: new Audio('./audio/two.m4a') };
+const THREE = { text: 'three', audio: new Audio('./audio/three.m4a') };
+const FOUR = { text: 'four', audio: new Audio('./audio/four.m4a') };
+const FIVE = { text: 'five', audio: new Audio('./audio/five.m4a') };
+const SIX = { text: 'six', audio: new Audio('./audio/six.m4a') };
+const SEVEN = { text: 'seven', audio: new Audio('./audio/seven.m4a') };
+const EIGHT = { text: 'eight', audio: new Audio('./audio/eight.m4a') };
+const NINE = { text: 'nine', audio: new Audio('./audio/nine.m4a') };
+const TEN = { text: 'ten', audio: new Audio('./audio/ten.m4a') };
+const ELEVEN = { text: 'eleven', audio: new Audio('./audio/eleven.m4a') };
+const TWELVE = { text: 'twelve', audio: new Audio('./audio/twelve.m4a') };
+const THIRTEEN = { text: 'thirteen', audio: new Audio('./audio/thirteen.m4a') };
+const FOURTEEN = { text: 'fourteen', audio: new Audio('./audio/fourteen.m4a') };
+const FIFTEEN = { text: 'fifteen', audio: new Audio('./audio/fifteen.m4a') };
+const SIXTEEN = { text: 'sixteen', audio: new Audio('./audio/sixteen.m4a') };
+const SEVENTEEN = { text: 'seventeen', audio: new Audio('./audio/seventeen.m4a') };
+const EIGHTEEN = { text: 'eighteen', audio: new Audio('./audio/eighteen.m4a') };
+const NINETEEN = { text: 'nineteen', audio: new Audio('./audio/nineteen.m4a') };
+const TWENTY = { text: 'twenty', audio: new Audio('./audio/twenty.m4a') };
+const THIRTY = { text: 'thirty', audio: new Audio('./audio/thirty.m4a') };
+const FORTY = { text: 'forty', audio: new Audio('./audio/forty.m4a') };
+const FIFTY = { text: 'fifty', audio: new Audio('./audio/fifty.m4a') };
+const SIXTY = { text: 'sixty', audio: new Audio('./audio/sixty.m4a') };
+const SEVENTY = { text: 'seventy', audio: new Audio('./audio/seventy.m4a') };
+const EIGHTY = { text: 'eighty', audio: new Audio('./audio/eighty.m4a') };
+const NINETY = { text: 'ninety', audio: new Audio('./audio/ninety.m4a') };
+const HUNDRED = { text: 'hundred', audio: new Audio('./audio/hundred.m4a') };
+const THOUSAND = { text: 'thousand', audio: new Audio('./audio/thousand.m4a') };
+const AND = { text: 'and', audio: new Audio('./audio/and.m4a') };
 
 const zeroToNine = [[], [ONE], [TWO], [THREE], [FOUR], [FIVE], [SIX], [SEVEN], [EIGHT], [NINE]];
 const tensAndUnits = ten => zeroToNine.map((unit) => unit ? [ten, ...unit] : [ten]);
@@ -69,7 +69,7 @@ const breakDown = x => {
   return pieces;
 };
 
-const say = x => {
+const pieces = x => {
   const pieces = [];
 
   const thousands = Math.floor(x / 1000);
@@ -91,7 +91,10 @@ const say = x => {
     pieces.push(ZERO);
   }
 
-  return pieces.map((n) => n.text).join(' ');
+  return pieces;
 };
 
-export { say };
+const audio = x => pieces(x).map((p) => p.audio);
+const text = x => pieces(x).map((p) => p.text).join(' ');
+
+export { audio, text };
