@@ -99,35 +99,6 @@ const pieces = x => {
   return pieces;
 };
 
-const playAudio = pieces => {
-  if (!pieces || !pieces.length) return;
+const text = number => pieces(number).map((p) => p.text).join(' ');
 
-  let [first, ...remaining] = pieces;
-
-  const audio = new Audio(require('./audio/all.m4a'));
-  audio.addEventListener('canplaythrough', function () {
-    console.log(audio.currentTime);
-    if (audio.currentTime < 1) {
-      audio.currentTime = first.start;
-    }
-    console.log(audio.currentTime);
-  });
-
-  let t = first.length;
-
-  const delay = t * 1000;
-  console.log('t', t);
-  console.log('delay', delay);
-  setTimeout(
-    () => {
-      console.log('pausing', audio);
-      audio.pause();
-    }
-    , delay);
-
-  audio.play();
-};
-
-const play = number => playAudio(pieces(number));
-
-export { play };
+export { text };
