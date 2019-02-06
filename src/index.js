@@ -20,6 +20,15 @@ const input = document.createElement('INPUT');
 input.type = 'text';
 body.appendChild(input);
 
+const start = document.createElement('BUTTON');
+start.type = 'button';
+start.value = 'Start';
+
+start.onclick = () => {
+  responsiveVoice.speak('start');
+};
+body.appendChild(start);
+
 const button = document.createElement('BUTTON');
 button.type = 'button';
 button.value = 'What does that make?';
