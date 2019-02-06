@@ -11,6 +11,19 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, target)
   },
+  module: {
+    rules: [
+      {
+        test: /\.(m4a|png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
     new CleanWebpackPlugin([target]),
     new HtmlWebpackPlugin({ title: 'What does this make?' })]
