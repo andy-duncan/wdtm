@@ -5,17 +5,22 @@
 // highlight as it says each section
 // cache the content for offline
 // make a smarter input
+// make it awesome on mobile / ipad
 
-// need to bootstrap the app.
-// pull in the audio files
 
-import { text, audio } from './wdtm';
+import { audio } from './wdtm';
 
 const body = document.body;
 
+const input = document.createElement('INPUT');
+input.type = 'text';
+input.id = 'the_number';
+body.appendChild(input);
+
 const button = document.createElement('BUTTON');
 button.onclick = () => {
-  playAudio(audio(22222));
+  const number = input.value;
+  playAudio(audio(number));
 };
 body.appendChild(button);
 
@@ -28,17 +33,11 @@ const addSelfDestructingEventListener = (element, eventType, callback) => {
 };
 
 const playAudio = pieces => {
-
   if (!pieces || !pieces.length) return;
 
   const [piece, ...remaining] = pieces;
 
-  console.log('pieces', pieces);
-  console.log('piece', piece);
-  console.log('remaining', remaining);
-
   addSelfDestructingEventListener(piece, 'ended', () => {
-    console.log('ended', piece);
     playAudio(remaining);
   });
 
