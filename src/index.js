@@ -1,3 +1,5 @@
+
+// add audio
 // split out millions / thousands
 // add billions, trillions, quadrillions, quintillions
 // highlight as it says each section
@@ -5,36 +7,46 @@
 // make a smarter input
 // make it awesome on mobile / ipad
 
-import { text } from './wdtm';
 
-const head = document.head;
+import { audio } from './wdtm';
+
 const body = document.body;
-
-// look at css grid for the buttons
-
-const responsivevoice = document.createElement('SCRIPT');
-responsivevoice.src = 'https://code.responsivevoice.org/responsivevoice.js';
-head.appendChild(responsivevoice);
 
 const input = document.createElement('INPUT');
 input.type = 'text';
+input.id = 'the_number';
 body.appendChild(input);
 
-const start = document.createElement('BUTTON');
-start.type = 'button';
-start.value = 'Start';
-
-start.onclick = () => {
-  responsiveVoice.speak('start');
-};
-body.appendChild(start);
-
 const button = document.createElement('BUTTON');
-button.type = 'button';
-button.value = 'What does that make?';
-
 button.onclick = () => {
   const number = input.value;
-  responsiveVoice.speak(text(number), 'UK English Male');
+  playAudio(audio(number));
 };
 body.appendChild(button);
+
+const addSelfDestructingEventListener = (element, eventType, callback) => {
+  const handler = () => {
+    element.removeEventListener(eventType, handler);
+    callback();
+  };
+  element.addEventListener(eventType, handler);
+};
+
+const playAudio = pieces => {
+  if (!pieces || !pieces.length) return;
+
+  const [piece, ...remaining] = pieces;
+
+  addSelfDestructingEventListener(piece, 'ended', () => {
+    playAudio(remaining);
+  });
+
+  piece.play();
+};
+
+
+
+
+
+
+
