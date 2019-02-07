@@ -1,9 +1,11 @@
+
 // split out millions / thousands
 // add billions, trillions, quadrillions, quintillions
-// highlight as it says each section
+
 // cache the content for offline
-// make a smarter input
 // maybe show the whole text and emphasise the words as they are said ?
+// highlight as it says each section
+
 import { init } from './wdtm';
 
 const audioElement = new Audio(require('./audio/zero.m4a'));
@@ -86,7 +88,7 @@ const clear = div('grid-item', 'C', () => {
 numberPad.appendChild(clear);
 
 const button = div('grid-item', 'WDTM?', () => {
-  const number = input.innerText;
+  const number = input.innerText.replace(/,/g, '');
   playAudio(number);
 });
 button.children[0].style.width = '100%';
