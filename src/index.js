@@ -27,6 +27,7 @@ const div = (className, content, click) => {
   button.style['text-decoration'] = 'none';
   button.style.display = 'inline-block';
   button.style['font-size'] = '24px';
+  button.style['-webkit-appearance'] = 'none';
 
   const d = document.createElement('DIV');
   d.className = className;
@@ -38,7 +39,8 @@ const div = (className, content, click) => {
 const numberPad = document.createElement('DIV');
 numberPad.style.display = 'grid';
 numberPad.style.width = '440px';
-numberPad.style.border = '1px solid #19BEFF';
+numberPad.style.border = '3px solid #19BEFF';
+numberPad.style['border-radius'] = '8px';
 numberPad.style['grid-gap'] = '10px';
 numberPad.style['grid-column-gap'] = '10px';
 numberPad.style['grid-template-columns'] = 'auto auto auto';
