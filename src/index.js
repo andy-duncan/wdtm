@@ -4,7 +4,6 @@
 // cache the content for offline
 // make a smarter input
 // maybe show the whole text and emphasise the words as they are said ?
-
 import { init } from './wdtm';
 
 const audioElement = new Audio(require('./audio/zero.m4a'));
@@ -50,7 +49,7 @@ numberPad.style['align-content'] = 'space-evenly';
 // top container for the number
 const inputContainer = document.createElement('div');
 const input = document.createElement('div');
-input.innerText = '111';
+input.innerText = '';
 input.style.height = '100px';
 input.style.backgroundColor = 'white';
 input.style.color = 'black';
@@ -67,16 +66,16 @@ inputContainer.appendChild(input);
 numberPad.appendChild(inputContainer);
 
 const click = n => () => {
-  console.log('n', n);
-  console.log('input.innerText', input.innerText);
-  input.innerText = input.innerText + n;
-}
+  const current = input.innerText.replace(/,/g, '');
+  if (current.length >= 15) return;
+  input.innerText = (current + n).replace(/(.)(?=(\d{3})+$)/g,'$1,');
+};
 
 const createKey = (n) => numberPad.appendChild(div('grid-item', n, click(n)));
 
 ['7', '8', '9', '4', '5', '6', '1', '2', '3'].forEach(createKey);
 
-const zero = div('grid-item', '0');
+const zero = div('grid-item', '0', click('0'));
 zero.style['grid-column'] = '1 / span 2';
 zero.children[0].style.width = '100%';
 numberPad.appendChild(zero);
