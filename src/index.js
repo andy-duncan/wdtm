@@ -50,7 +50,7 @@ numberPad.style['align-content'] = 'space-evenly';
 // top container for the number
 const inputContainer = document.createElement('div');
 const input = document.createElement('div');
-input.innerText = '123,432,123,123,123,123';
+input.innerText = '111';
 input.style.height = '100px';
 input.style.backgroundColor = 'white';
 input.style.color = 'black';
@@ -66,7 +66,13 @@ inputContainer.style.width = '100%';
 inputContainer.appendChild(input);
 numberPad.appendChild(inputContainer);
 
-const createKey = (n) => numberPad.appendChild(div('grid-item', n));
+const click = n => () => {
+  console.log('n', n);
+  console.log('input.innerText', input.innerText);
+  input.innerText = input.innerText + n;
+}
+
+const createKey = (n) => numberPad.appendChild(div('grid-item', n, click(n)));
 
 ['7', '8', '9', '4', '5', '6', '1', '2', '3'].forEach(createKey);
 
@@ -75,11 +81,13 @@ zero.style['grid-column'] = '1 / span 2';
 zero.children[0].style.width = '100%';
 numberPad.appendChild(zero);
 
-const clear = div('grid-item', 'C');
+const clear = div('grid-item', 'C', () => {
+  input.innerText = '';
+});
 numberPad.appendChild(clear);
 
 const button = div('grid-item', 'WDTM?', () => {
-  const number = input.value;
+  const number = input.innerText;
   playAudio(number);
 });
 button.children[0].style.width = '100%';
