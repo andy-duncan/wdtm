@@ -10,22 +10,21 @@ import { init } from './wdtm';
 const audioElement = new Audio(require('./audio/zero.m4a'));
 const { playAudio, text } = init(audioElement);
 
-const head = document.head;
 const body = document.body;
 
-
-// const button = document.createElement('BUTTON');
-// button.innerText = 'WDTM?';
-// button.onclick = () => {
-//   const number = input.value;
-//   playAudio(number);
-// };
-// body.appendChild(button);
-
 const div = (className, content, click) => {
-  const button = document.createElement('BUTTON');
-  button.innerText = content || '';
+  const button = document.createElement('input');
+  button.type = 'button';
+  button.value = content || '';
   button.onclick = click;
+  button.style['background-color'] = '#F3EFFF';
+  button.style.border = 'none';
+  button.style.color = 'white';
+  button.style.padding = '15px 32px';
+  button.style['text-align'] = 'center';
+  button.style['text-decoration'] = 'none';
+  button.style.display = 'inline-block';
+  button.style['font-size'] = '24px';
 
   const d = document.createElement('DIV');
   d.className = className;
@@ -33,45 +32,31 @@ const div = (className, content, click) => {
   return d;
 };
 
+// core UI element (container)
 const numberPad = document.createElement('DIV');
 numberPad.style.display = 'grid';
-numberPad.style['grid-gap'] = '50px';
+numberPad.style['grid-gap'] = '10px';
 numberPad.style['grid-template-columns'] = 'auto auto auto';
 numberPad.style['justify-content'] = 'space-evenly';
 numberPad.style['aign-content'] = 'space-evenly';
 
+// top container for the number
 const input = document.createElement('INPUT');
 input.type = 'text';
 input.style['grid-column'] = '1 / span 3';
 numberPad.appendChild(input);
 
-const numberOne = div('grid-item', '1');
-const numberTwo = div('grid-item', '2');
-const numberThree = div('grid-item', '3');
-const numberFour = div('grid-item', '4');
-const numberFive = div('grid-item', '5');
-const numberSix = div('grid-item', '6');
-const numberSeven = div('grid-item', '7');
-const numberEight = div('grid-item', '8');
-const numberNine = div('grid-item', '9');
-const numberZero = div('grid-item', '0');
+const createKey = (n) => numberPad.appendChild(div('grid-item', n));
+
+['7', '8', '9', '4', '5', '6', '1', '2', '3', '0'].forEach(createKey);
 
 const button = div('grid-item', 'WDTM?', () => {
   const number = input.value;
   playAudio(number);
 });
-button.style['grid-column'] = '2 / 3';
+button.children[0].style.color = 'blue';
+button.style['grid-column'] = '2 / span 2';
 
-numberPad.appendChild(numberSeven);
-numberPad.appendChild(numberEight);
-numberPad.appendChild(numberNine);
-numberPad.appendChild(numberFour);
-numberPad.appendChild(numberFive);
-numberPad.appendChild(numberSix);
-numberPad.appendChild(numberOne);
-numberPad.appendChild(numberTwo);
-numberPad.appendChild(numberThree);
-numberPad.appendChild(numberZero);
 numberPad.appendChild(button);
 
 body.appendChild(numberPad);
