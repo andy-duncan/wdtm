@@ -1,4 +1,3 @@
-
 // add audio
 // split out millions / thousands
 // add billions, trillions, quadrillions, quintillions
@@ -6,9 +5,8 @@
 // cache the content for offline
 // make a smarter input
 // make it awesome on mobile / ipad
-
-
 import { audio } from './wdtm';
+
 
 const body = document.body;
 
@@ -17,10 +15,16 @@ input.type = 'text';
 input.id = 'the_number';
 body.appendChild(input);
 
+
+const audioElement = new Audio(require('./audio/zero.m4a'));
+
 const button = document.createElement('BUTTON');
+button.innerText = 'WDTM?';
 button.onclick = () => {
   const number = input.value;
+  audioElement.play();
   playAudio(audio(number));
+
 };
 body.appendChild(button);
 
@@ -37,16 +41,18 @@ const playAudio = pieces => {
 
   const [piece, ...remaining] = pieces;
 
-  addSelfDestructingEventListener(piece, 'ended', () => {
+  addSelfDestructingEventListener(audioElement, 'ended', () => {
     playAudio(remaining);
   });
 
-  piece.play();
+  console.log('piece', piece);
+  audioElement.src = piece;
+  audioElement.play();
+  console.log('audioEle', audioElement);
+  console.log('audioElement.paused', audioElement.paused);
+
+
 };
-
-
-
-
 
 
 
