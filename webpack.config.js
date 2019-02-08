@@ -32,12 +32,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'What does this make?',
       filename: 'index.html',
-      chunks: 'andy'
+      chunks: ['andy']
     }),
     new HtmlWebpackPlugin({
       title: 'What does this make? As told by Zola',
       filename: 'z.html',
-      chunks: 'z'
+      chunks: ['z']
     })
   ],
 };
