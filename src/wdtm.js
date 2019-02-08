@@ -1,4 +1,4 @@
-import { zeroToNinetyNine, zeroToNine, HUNDRED, AND, THOUSAND, MILLION, ZERO } from './constants';
+import { zeroToNinetyNine, zeroToNine, HUNDRED, AND, THOUSAND, MILLION, BILLION, ZERO } from './constants';
 
 export const init = (audioElement, voice) => {
   const breakDown = x => {
@@ -27,7 +27,8 @@ export const init = (audioElement, voice) => {
   const pieces = x => {
     const pieces = [];
 
-    const millions = Math.floor(x / 1000000);
+    const billions = Math.floor(x / 1000000000);
+    const millions = Math.floor((x / 1000000) % 1000);
     const thousands = Math.floor((x / 1000) % 1000);
     const hundreds = Math.floor(x % 1000);
 
@@ -36,9 +37,15 @@ export const init = (audioElement, voice) => {
 
 
 
+    const billion = breakDown(billions);
     const million = breakDown(millions);
     const thousand = breakDown(thousands);
     const hundred = breakDown(hundreds);
+
+    pieces.push(...billion);
+    if (billion.length > 0) {
+      pieces.push(BILLION);
+    }
 
     pieces.push(...million);
     if (million.length > 0) {

@@ -224,5 +224,43 @@ describe('wdtm', function () {
         assert.equal(text(423122569), 'four hundred and twenty three million one hundred and twenty two thousand five hundred and sixty nine');
       });
     });
+
+    describe('billions', () => {
+      it('one billion', () => {
+        assert.equal(text(1000000000), 'one billion');
+      });
+
+      it('one billion and twenty three', () => {
+        assert.equal(text(1000000023), 'one billion and twenty three');
+      });
+
+      it('forty seven billion two hundred and eighty', () => {
+        assert.equal(text(47000000280), 'forty seven billion two hundred and eighty');
+      });
+
+      it('two billion four hundred million four hundred thousand four hundred', () => {
+        assert.equal(text(2400400400), 'two billion four hundred million four hundred thousand four hundred');
+      });
+
+      it('thirty two billion four hundred thousand three hundred', () => {
+        assert.equal(text(32000400300), 'thirty two billion four hundred thousand three hundred');
+      });
+
+      it('two billion four hundred million three hundred and eleven', () => {
+        assert.equal(text(2400000311), 'two billion four hundred million three hundred and eleven');
+      });
+
+      it('four billion two hundred and twelve million', () => {
+        assert.equal(text(4212000000), 'four billion two hundred and twelve million');
+      });
+
+      it('four hundred and twenty three billion one hundred and twenty two thousand five hundred ', () => {
+        assert.equal(text(423000122500), 'four hundred and twenty three billion one hundred and twenty two thousand five hundred');
+      });
+
+      it('four hundred and twenty three billion one hundred and twenty two thousand and sixty nine', () => {
+        assert.equal(text(423000122069), 'four hundred and twenty three billion one hundred and twenty two thousand and sixty nine');
+      });
+    });
   });
 });
