@@ -6,10 +6,18 @@
 // maybe show the whole text and emphasise the words as they are said ?
 // highlight as it says each section
 
+
+// disabling babel for audio files, so the tests run.
+
+// double click thing to zoom
+
+// see if it can fill the screen by default. / aspect ratio ?
+
+import andy from './audio/andy'; // just to get the requires in.
+
 import { init } from './wdtm';
 
-const audioElement = new Audio(require('./audio/zero.m4a'));
-const { playAudio, text } = init(audioElement);
+const { playAudio, text } = init(new Audio());
 
 const body = document.body;
 
