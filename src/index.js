@@ -55,6 +55,7 @@ numberPad.style['grid-column-gap'] = '10px';
 numberPad.style['grid-template-columns'] = 'auto auto auto';
 numberPad.style['justify-content'] = 'space-evenly';
 numberPad.style['align-content'] = 'space-evenly';
+numberPad.style['touch-action'] = 'manipulation';
 
 // top container for the number
 const inputContainer = document.createElement('div');
@@ -64,11 +65,11 @@ input.style.height = '100px';
 input.style.backgroundColor = 'white';
 input.style.color = 'black';
 input.style['font-family'] = 'system-ui';
-input.style['font-size'] = '30px';
+input.style['font-size'] = '32px';
 input.style['font-weight'] = 'bold';
 input.style['line-height'] = '100px';
 input.style['text-align'] = 'right';
-input.style['padding-right'] = '10px';
+input.style['padding-right'] = '5px';
 
 inputContainer.style['grid-column'] = '1 / span 3';
 inputContainer.style.width = '100%';
