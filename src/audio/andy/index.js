@@ -28,4 +28,5 @@ require('./eighty.m4a');
 require('./ninety.m4a');
 require('./hundred.m4a');
 require('./thousand.m4a');
+require('./million.m4a');
 require('./and.m4a');

@@ -77,6 +77,7 @@ numberPad.appendChild(inputContainer);
 
 const click = n => () => {
   const current = input.innerText.replace(/,/g, '');
+  if (current.length == 0 && n === '0') return;
   if (current.length >= 15) return;
   input.innerText = (current + n).replace(/(.)(?=(\d{3})+$)/g,'$1,');
 };

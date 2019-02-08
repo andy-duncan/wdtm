@@ -1,6 +1,7 @@
 export const ZERO = 'zero';
 export const HUNDRED = 'hundred';
 export const THOUSAND = 'thousand';
+export const MILLION = 'million';
 export const AND = 'and';
 
 const ONE = 'one';

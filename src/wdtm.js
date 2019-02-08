@@ -1,4 +1,4 @@
-import { zeroToNinetyNine, zeroToNine, HUNDRED, AND, THOUSAND, ZERO } from './constants';
+import { zeroToNinetyNine, zeroToNine, HUNDRED, AND, THOUSAND, MILLION, ZERO } from './constants';
 
 export const init = (audioElement, voice) => {
   const breakDown = x => {
@@ -27,19 +27,34 @@ export const init = (audioElement, voice) => {
   const pieces = x => {
     const pieces = [];
 
-    const thousands = Math.floor(x / 1000);
+    const millions = Math.floor(x / 1000000);
+    const thousands = Math.floor((x / 1000) % 1000);
     const hundreds = Math.floor(x % 1000);
 
+    // is there a neat way to split into 3s, break down, then zip up with the big units, then put back together ?
+
+
+
+
+    const million = breakDown(millions);
     const thousand = breakDown(thousands);
     const hundred = breakDown(hundreds);
+
+    pieces.push(...million);
+    if (million.length > 0) {
+      pieces.push(MILLION);
+    }
 
     pieces.push(...thousand);
     if (thousand.length > 0) {
       pieces.push(THOUSAND);
-      if (hundreds > 0 && hundreds < 100) {
-        pieces.push(AND);
-      }
     }
+
+    // need to arrange for the final AND
+    if (pieces.length > 0 && hundreds > 0 && hundreds < 100) {
+      pieces.push(AND);
+    }
+
     pieces.push(...hundred);
 
     if (pieces.length === 0) {

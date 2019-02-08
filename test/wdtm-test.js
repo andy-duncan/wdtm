@@ -166,6 +166,10 @@ describe('wdtm', function () {
         assert.equal(text(1000), 'one thousand');
       });
 
+      it('seven thousand and seven', () => {
+        assert.equal(text(7007), 'seven thousand and seven');
+      });
+
       it('two thousand four hundred', () => {
         assert.equal(text(2400), 'two thousand four hundred');
       });
@@ -176,6 +180,48 @@ describe('wdtm', function () {
 
       it('one hundred and twenty two thousand five hundred and sixty nine', () => {
         assert.equal(text(122569), 'one hundred and twenty two thousand five hundred and sixty nine');
+      });
+    });
+
+    describe('millions', () => {
+      it('one million', () => {
+        assert.equal(text(1000000), 'one million');
+      });
+
+      it('one million and twenty three', () => {
+        assert.equal(text(1000023), 'one million and twenty three');
+      });
+
+      it('forty seven million two hundred and eighty', () => {
+        assert.equal(text(47000280), 'forty seven million two hundred and eighty');
+      });
+
+      it('two million four hundred thousand', () => {
+        assert.equal(text(2400000), 'two million four hundred thousand');
+      });
+
+      it('two million four hundred thousand three hundred', () => {
+        assert.equal(text(2400300), 'two million four hundred thousand three hundred');
+      });
+
+      it('two million four hundred thousand three hundred and eleven', () => {
+        assert.equal(text(2400311), 'two million four hundred thousand three hundred and eleven');
+      });
+
+      it('four million two hundred and twelve thousand', () => {
+        assert.equal(text(4212000), 'four million two hundred and twelve thousand');
+      });
+
+      it('four hundred and twenty three million one hundred and twenty two thousand five hundred ', () => {
+        assert.equal(text(423122500), 'four hundred and twenty three million one hundred and twenty two thousand five hundred');
+      });
+
+      it('four hundred and twenty three million one hundred and twenty two thousand and sixty nine', () => {
+        assert.equal(text(423122069), 'four hundred and twenty three million one hundred and twenty two thousand and sixty nine');
+      });
+
+      it('four hundred and twenty three million one hundred and twenty two thousand five hundred and sixty nine', () => {
+        assert.equal(text(423122569), 'four hundred and twenty three million one hundred and twenty two thousand five hundred and sixty nine');
       });
     });
   });
