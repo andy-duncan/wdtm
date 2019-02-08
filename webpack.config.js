@@ -6,9 +6,12 @@ const path = require('path');
 const target = 'docs';
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    andy: './src/andy.js',
+    z: './src/z.js'
+  },
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, target)
   },
   module: {
@@ -26,5 +29,15 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin([target]),
-    new HtmlWebpackPlugin({ title: 'What does this make?' })]
+    new HtmlWebpackPlugin({
+      title: 'What does this make?',
+      filename: 'index.html',
+      chunks: 'andy'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'What does this make? As told by Zola',
+      filename: 'z.html',
+      chunks: 'z'
+    })
+  ],
 };

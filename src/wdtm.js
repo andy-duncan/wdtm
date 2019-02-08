@@ -83,7 +83,7 @@ export const init = (audioElement, voice) => {
       play(remaining);
     });
 
-    audioElement.src = `${piece}.m4a`;
+    audioElement.src = `${voice || ''}${piece}.m4a`;
     audioElement.play();
   };
 
