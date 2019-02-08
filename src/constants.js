@@ -4,6 +4,7 @@ export const THOUSAND = 'thousand';
 export const MILLION = 'million';
 export const BILLION = 'billion';
 export const TRILLION = 'trillion';
+export const QUADRILLION = 'quadrillion';
 export const AND = 'and';
 
 const ONE = 'one';

@@ -64,7 +64,7 @@ input.style.height = '100px';
 input.style.backgroundColor = 'white';
 input.style.color = 'black';
 input.style['font-family'] = 'system-ui';
-input.style['font-size'] = '34px';
+input.style['font-size'] = '30px';
 input.style['font-weight'] = 'bold';
 input.style['line-height'] = '100px';
 input.style['text-align'] = 'right';
@@ -78,7 +78,7 @@ numberPad.appendChild(inputContainer);
 const click = n => () => {
   const current = input.innerText.replace(/,/g, '');
   if (current.length == 0 && n === '0') return;
-  if (current.length >= 15) return;
+  if (current.length >= 18) return;
   input.innerText = (current + n).replace(/(.)(?=(\d{3})+$)/g,'$1,');
 };
 

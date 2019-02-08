@@ -1,4 +1,15 @@
-import { zeroToNinetyNine, zeroToNine, HUNDRED, AND, THOUSAND, MILLION, BILLION, TRILLION, ZERO } from './constants';
+import {
+  zeroToNinetyNine,
+  zeroToNine,
+  HUNDRED,
+  AND,
+  THOUSAND,
+  MILLION,
+  BILLION,
+  TRILLION,
+  QUADRILLION,
+  ZERO
+} from './constants';
 
 export const init = (audioElement, voice) => {
   const breakDown = x => {
@@ -9,7 +20,6 @@ export const init = (audioElement, voice) => {
     const units = x % 10;
 
     const tensAndUnits = zeroToNinetyNine[tens][units];
-
     const hundred = zeroToNine[hundreds];
 
     pieces.push(...hundred);
@@ -24,55 +34,33 @@ export const init = (audioElement, voice) => {
     return pieces;
   };
 
-  const pieces = x => {
-    const pieces = [];
+  const reverseString = s => s.split("").reverse().join("");
+  const allUnits = [[], [THOUSAND], [MILLION], [BILLION], [TRILLION], [QUADRILLION]];
 
-    const trillions = Math.floor(x / 1000000000000);
-    const billions = Math.floor((x / 1000000000) % 1000);
-    const millions = Math.floor((x / 1000000) % 1000);
-    const thousands = Math.floor((x / 1000) % 1000);
-    const hundreds = Math.floor(x % 1000);
+  const pieces = n => {
+    const threeDigitChunks = reverseString(n.toString()).match(/.{1,3}/g).map(reverseString);
+    const wordsForChunks = threeDigitChunks.map(breakDown).reverse();
+    const unitsNeeded = allUnits.slice(0, wordsForChunks.length).reverse();
 
-    // is there a neat way to split into 3s, break down, then zip up with the big units, then put back together ?
+    const wordsForNumber = wordsForChunks.reduce((acc, current, i) => {
+      if (i === wordsForChunks.length - 1) {
+        const number = parseInt(threeDigitChunks[0]);
+        if (acc.length > 0 && number > 0 && number < 100) {
+          acc.push(AND);
+        }
+      }
+      if (current && current.length > 0) {
+        acc.push(...current);
+        acc.push(...unitsNeeded[i]);
+      }
+      return acc;
+    }, []);
 
-    const trillion = breakDown(trillions);
-    const billion = breakDown(billions);
-    const million = breakDown(millions);
-    const thousand = breakDown(thousands);
-    const hundred = breakDown(hundreds);
-
-    pieces.push(...trillion);
-    if (trillion.length > 0) {
-      pieces.push(TRILLION);
+    if (wordsForNumber.length === 0) {
+      wordsForNumber.push(ZERO);
     }
 
-    pieces.push(...billion);
-    if (billion.length > 0) {
-      pieces.push(BILLION);
-    }
-
-    pieces.push(...million);
-    if (million.length > 0) {
-      pieces.push(MILLION);
-    }
-
-    pieces.push(...thousand);
-    if (thousand.length > 0) {
-      pieces.push(THOUSAND);
-    }
-
-    // need to arrange for the final AND
-    if (pieces.length > 0 && hundreds > 0 && hundreds < 100) {
-      pieces.push(AND);
-    }
-
-    pieces.push(...hundred);
-
-    if (pieces.length === 0) {
-      pieces.push(ZERO);
-    }
-
-    return pieces;
+    return wordsForNumber;
   };
 
   const audio = x => pieces(x).map((p) => p);
