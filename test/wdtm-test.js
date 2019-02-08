@@ -262,5 +262,43 @@ describe('wdtm', function () {
         assert.equal(text(423000122069), 'four hundred and twenty three billion one hundred and twenty two thousand and sixty nine');
       });
     });
+
+    describe('trillions', () => {
+      it('one trillion', () => {
+        assert.equal(text(1000000000000), 'one trillion');
+      });
+
+      it('one trillion and twenty three', () => {
+        assert.equal(text(1000000000023), 'one trillion and twenty three');
+      });
+
+      it('forty seven trillion two hundred and eighty', () => {
+        assert.equal(text(47000000000280), 'forty seven trillion two hundred and eighty');
+      });
+
+      it('two trillion four hundred billion four hundred million four hundred thousand four hundred', () => {
+        assert.equal(text(2400400400400), 'two trillion four hundred billion four hundred million four hundred thousand four hundred');
+      });
+
+      it('thirty two trillion four hundred thousand three hundred', () => {
+        assert.equal(text(32000000400300), 'thirty two trillion four hundred thousand three hundred');
+      });
+
+      it('two trillion four hundred million three hundred and eleven', () => {
+        assert.equal(text(2000400000311), 'two trillion four hundred million three hundred and eleven');
+      });
+
+      it('four trillion two hundred and twelve million', () => {
+        assert.equal(text(4000212000000), 'four trillion two hundred and twelve million');
+      });
+
+      it('four hundred and twenty three trillion one hundred and twenty two thousand five hundred ', () => {
+        assert.equal(text(423000000122500), 'four hundred and twenty three trillion one hundred and twenty two thousand five hundred');
+      });
+
+      it('four hundred and twenty three trillion one hundred and twenty two thousand and sixty nine', () => {
+        assert.equal(text(423000000122069), 'four hundred and twenty three trillion one hundred and twenty two thousand and sixty nine');
+      });
+    });
   });
 });

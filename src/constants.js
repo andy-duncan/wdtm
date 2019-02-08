@@ -3,6 +3,7 @@ export const HUNDRED = 'hundred';
 export const THOUSAND = 'thousand';
 export const MILLION = 'million';
 export const BILLION = 'billion';
+export const TRILLION = 'trillion';
 export const AND = 'and';
 
 const ONE = 'one';

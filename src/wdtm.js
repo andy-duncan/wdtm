@@ -1,4 +1,4 @@
-import { zeroToNinetyNine, zeroToNine, HUNDRED, AND, THOUSAND, MILLION, BILLION, ZERO } from './constants';
+import { zeroToNinetyNine, zeroToNine, HUNDRED, AND, THOUSAND, MILLION, BILLION, TRILLION, ZERO } from './constants';
 
 export const init = (audioElement, voice) => {
   const breakDown = x => {
@@ -27,20 +27,24 @@ export const init = (audioElement, voice) => {
   const pieces = x => {
     const pieces = [];
 
-    const billions = Math.floor(x / 1000000000);
+    const trillions = Math.floor(x / 1000000000000);
+    const billions = Math.floor((x / 1000000000) % 1000);
     const millions = Math.floor((x / 1000000) % 1000);
     const thousands = Math.floor((x / 1000) % 1000);
     const hundreds = Math.floor(x % 1000);
 
     // is there a neat way to split into 3s, break down, then zip up with the big units, then put back together ?
 
-
-
-
+    const trillion = breakDown(trillions);
     const billion = breakDown(billions);
     const million = breakDown(millions);
     const thousand = breakDown(thousands);
     const hundred = breakDown(hundreds);
+
+    pieces.push(...trillion);
+    if (trillion.length > 0) {
+      pieces.push(TRILLION);
+    }
 
     pieces.push(...billion);
     if (billion.length > 0) {
